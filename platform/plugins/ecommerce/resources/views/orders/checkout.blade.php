@@ -14,10 +14,10 @@
 
             <div class="container" id="main-checkout-product-info">
                 <div class="row">
+                    <div class="d-block d-sm-none mobile-logo-top col-12">
+                        @include('plugins/ecommerce::orders.partials.logo')
+                    </div>
                     <div class="order-1 order-md-2 col-lg-5 col-md-6 right">
-                        <div class="d-block d-sm-none">
-                            @include('plugins/ecommerce::orders.partials.logo')
-                        </div>
                         <div id="cart-item" class="position-relative">
 
                             <div class="payment-info-loading" style="display: none;">

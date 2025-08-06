@@ -433,6 +433,21 @@ body, .form-control, .btn {
     .order-1, .order-md-2 {
         order: initial !important;
     }
+    
+    /* Mobile: Show shipping information first, then receipt */
+    .left {
+        order: 2 !important;
+    }
+    .right {
+        order: 3 !important;
+    }
+    
+    /* Mobile: Logo at the top */
+    .mobile-logo-top {
+        order: 1 !important;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
     .checkout-logo {
         margin-top: 20px;
