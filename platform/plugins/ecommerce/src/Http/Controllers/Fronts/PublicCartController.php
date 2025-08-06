@@ -280,4 +280,80 @@ class PublicCartController extends Controller
             ->setData(Cart::instance('cart')->content())
             ->setMessage(__('Empty cart successfully!'));
     }
+
+    public function buyNow(CartRequest $request, BaseHttpResponse $response)
+    {
+        if (! EcommerceHelper::isCartEnabled()) {
+            abort(404);
+        }
+
+        $product = $this->productRepository->findById($request->input('id'));
+
+        if (! $product) {
+            return $response
+                ->setError()
+                ->setMessage(__('This product is out of stock or not exists!'));
+        }
+
+        if ($product->variations->count() > 0 && ! $product->is_variation) {
+            $product = $product->defaultVariation->product;
+        }
+
+        if ($product->isOutOfStock()) {
+            return $response
+                ->setError()
+                ->setMessage(__('Product :product is out of stock!', ['product' => $product->original_product->name ?: $product->name]));
+        }
+
+        if (! $product->canAddToCart($request->input('qty', 1))) {
+            return $response
+                ->setError()
+                ->setMessage(__('Maximum quantity is :max!', ['max' => $product->quantity]));
+        }
+
+        if ($product->original_product->options()->where('required', true)->exists()) {
+            if (! $request->input('options')) {
+                return $response
+                    ->setError()
+                    ->setData(['next_url' => $product->original_product->url])
+                    ->setMessage(__('Please select product options!'));
+            }
+
+            $requiredOptions = $product->original_product->options()->where('required', true)->get();
+
+            $message = null;
+
+            foreach ($requiredOptions as $requiredOption) {
+                if (! $request->input('options.' . $requiredOption->id . '.values')) {
+                    $message .= trans('plugins/ecommerce::product-option.add_to_cart_value_required', ['value' => $requiredOption->name]);
+                }
+            }
+
+            if ($message) {
+                return $response
+                    ->setError()
+                    ->setMessage(__('Please select product options!'));
+            }
+        }
+
+        // Clear the cart first for Buy Now functionality
+        Cart::instance('cart')->destroy();
+
+        // Add the product to cart
+        OrderHelper::handleAddCart($product, $request);
+
+        // Generate checkout token and redirect to checkout
+        $token = OrderHelper::getOrderSessionToken();
+        $nextUrl = route('public.checkout.information', $token);
+
+        if ($request->ajax() && $request->wantsJson()) {
+            return $response
+                ->setData(['next_url' => $nextUrl])
+                ->setMessage(__('Redirecting to checkout...'));
+        }
+
+        return $response
+            ->setNextUrl($nextUrl)
+            ->setMessage(__('Redirecting to checkout...'));
+    }
 }

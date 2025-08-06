@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         @endif
-                        {!! Theme::partial('ecommerce.product-cart-form',
+                        {!! Theme::partial('ecommerce.product-cart-form-single-product',
                             compact('product', 'selectedAttrs') + ['withButtons' => true, 'withVariations' => true, 'wishlistIds' => [], 'withBuyNow' => true]) !!}
                         <div class="meta-sku @if (!$product->sku) d-none @endif">
                             <span class="meta-label d-inline-block">{{ __('SKU') }}:</span>
@@ -468,8 +468,8 @@
                                     <span class="add-to-cart-text ms-1">{{ __('Add to cart') }}</span>
                                 </button>
                                 @if (EcommerceHelper::isQuickBuyButtonEnabled())
-                                    <button type="button" name="checkout" value="1" class="btn btn-primary btn-black ms-2 add-to-cart-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Buy Now') }}">
-                                        <span class="add-to-cart-text">{{ __('Buy Now') }}</span>
+                                    <button type="button" class="btn btn-primary btn-black ms-2 buy-now-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Buy Now') }}" onclick="redirectToProduct('{{ $product->url }}')">
+                                        <span class="buy-now-text">{{ __('Buy Now') }}</span>
                                     </button>
                                 @endif
                             @endif
@@ -495,8 +495,8 @@
                         </button>
 
                         @if (EcommerceHelper::isQuickBuyButtonEnabled())
-                            <button type="button" name="checkout" value="1" class="btn btn-primary btn-black mb-2 ms-2 add-to-cart-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Buy Now') }}">
-                                <span class="add-to-cart-text ms-2">{{ __('Buy Now') }}</span>
+                            <button type="button" class="btn btn-primary btn-black mb-2 ms-2 buy-now-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Buy Now') }}" onclick="redirectToProduct('{{ $product->url }}')">
+                                <span class="buy-now-text ms-2">{{ __('Buy Now') }}</span>
                             </button>
                         @endif
                     @endif

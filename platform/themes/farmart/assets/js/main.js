@@ -532,6 +532,47 @@ MartApp.isRTL = $('body').prop('dir') === 'rtl';
         });
     };
 
+    MartApp.buyNow = function (button) {
+        const $form = $(button).closest('form.cart-form');
+        const $btn = $(button);
+        $btn.addClass('loading');
+
+        let data = $form.serializeArray();
+
+        $.ajax({
+            type: 'POST',
+            url: '/cart/buy-now',
+            data: $.param(data),
+            success: res => {
+                if (res.error) {
+                    MartApp.showError(res.message);
+                    return false;
+                }
+
+                if (res.data.next_url !== undefined) {
+                    window.location.href = res.data.next_url;
+                    return false;
+                }
+
+                MartApp.showSuccess(res.message);
+            },
+            error: res => {
+                MartApp.handleError(res, $form);
+            },
+            complete: () => {
+                $btn.removeClass('loading');
+            },
+        });
+    };
+
+    // Make buyNow function globally accessible
+    window.buyNow = MartApp.buyNow;
+
+    // Function to redirect to product page
+    window.redirectToProduct = function(productUrl) {
+        window.location.href = productUrl;
+    };
+
     MartApp.applyCouponCode = function () {
         $(document).on('keypress', '.form-coupon-wrapper .coupon-code', e => {
             if (e.key === 'Enter') {
@@ -1986,4 +2027,9 @@ MartApp.isRTL = $('body').prop('dir') === 'rtl';
             }, 200);
         });
     });
+
+    // Function to redirect to product page when Buy Now button is clicked
+    window.redirectToProduct = function(productUrl) {
+        window.location.href = productUrl;
+    };
 })(jQuery);

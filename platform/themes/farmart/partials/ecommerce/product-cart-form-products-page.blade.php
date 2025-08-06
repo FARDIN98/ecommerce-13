@@ -28,14 +28,6 @@
                     </span>
                     <span class="add-to-cart-text">{{ __('Add to cart') }}</span>
                 </button>
-                <a href="{{ $product->url }}" class="btn buy-now-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) aria-disabled="true" @endif title="{{ __('Buy Now') }}" style="background-color: #FDC040; color: #253D4E; border: none; padding: 12px 20px; border-radius: 6px; font-weight: 600; width: 100%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;">
-                    <span class="svg-icon" style="margin-right: 8px;">
-                        <svg style="width: 16px; height: 16px; fill: currentColor;">
-                            <use href="#svg-icon-buy-now" xlink:href="#svg-icon-buy-now"></use>
-                        </svg>
-                    </span>
-                    <span class="buy-now-text">{{ __('Buy Now') }}</span>
-                </a>
             @endif
             @if (!empty($withButtons))
                 {!! Theme::partial('ecommerce.product-loop-buttons', compact('product', 'wishlistIds')) !!}

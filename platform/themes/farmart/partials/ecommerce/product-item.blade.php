@@ -66,6 +66,10 @@
         @endisset
     </div>
     <div class="product-bottom-box">
-        {!! Theme::partial('ecommerce.product-cart-form', compact('product')) !!}
+        @if (request()->is('products') || request()->is('products/*') || request()->is('product/*'))
+            {!! Theme::partial('ecommerce.product-cart-form-products-page', compact('product')) !!}
+        @else
+            {!! Theme::partial('ecommerce.product-cart-form', compact('product')) !!}
+        @endif
     </div>
 </div>
