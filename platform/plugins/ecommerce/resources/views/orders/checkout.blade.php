@@ -268,4 +268,35 @@
 @push('footer')
     <script type="text/javascript" src="{{ asset('vendor/core/core/js-validation/js/js-validation.js')}}"></script>
     {!! JsValidator::formRequest(\Botble\Ecommerce\Http\Requests\SaveCheckoutInformationRequest::class, '#checkout-form'); !!}
+    
+    <script>
+        $(document).ready(function() {
+            // Use event delegation to ensure it works even if elements are loaded dynamically
+            $(document).on('click', '.remove-cart-item', function(e) {
+                e.preventDefault();
+                var $this = $(this);
+                
+                if (confirm('Are you sure you want to remove this item?')) {
+                    var removeUrl = $this.attr('href');
+                    
+                    // Show loading
+                    $this.html('<i class="fas fa-spinner fa-spin"></i>');
+                    $this.prop('disabled', true);
+                    
+                    // Make AJAX request to remove item
+                    $.get(removeUrl)
+                        .done(function(response) {
+                            // Reload the page to update cart
+                            window.location.reload();
+                        })
+                        .fail(function() {
+                            alert('Error removing item. Please try again.');
+                            // Restore button
+                            $this.html('<i class="fas fa-trash"></i>');
+                            $this.prop('disabled', false);
+                        });
+                }
+            });
+        });
+    </script>
 @endpush

@@ -19,5 +19,10 @@
     </div>
     <div class="col-auto text-end">
         <p>{{ format_price($cartItem->price) }}</p>
+        <a href="{{ route('public.cart.remove', $cartItem->rowId) }}" 
+           class="btn btn-sm btn-outline-danger mt-1 remove-cart-item" 
+           title="{{ __('Remove') }}">
+            <i class="fas fa-trash"></i>
+        </a>
     </div>
 </div>
