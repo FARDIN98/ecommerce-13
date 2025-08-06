@@ -1,0 +1,10 @@
+{
+    "id": "botble/ads",
+    "name": "Ads",
+    "namespace": "Botble\\Ads\\",
+    "provider": "Botble\\Ads\\Providers\\AdsServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "1.0",
+    "description": "Ads manager for Fresh Mart"
+}

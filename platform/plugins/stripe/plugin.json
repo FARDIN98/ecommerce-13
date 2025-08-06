@@ -1,0 +1,11 @@
+{
+    "id": "botble/stripe",
+    "name": "Stripe Payment Gateway",
+    "namespace": "Botble\\Stripe\\",
+    "provider": "Botble\\Stripe\\Providers\\StripeServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "1.0.0",
+    "description": "Stripe payment gateway integration",
+    "require": ["botble/payment"]
+}

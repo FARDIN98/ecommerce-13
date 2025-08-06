@@ -1,0 +1,10 @@
+{
+    "id": "botble/language",
+    "name": "Language",
+    "namespace": "Botble\\Language\\",
+    "provider": "Botble\\Language\\Providers\\LanguageServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "2.2.0",
+    "description": "Multi-language features."
+}

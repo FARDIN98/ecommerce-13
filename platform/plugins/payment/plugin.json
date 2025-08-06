@@ -1,0 +1,10 @@
+{
+    "id": "botble/payment",
+    "name": "Payment",
+    "namespace": "Botble\\Payment\\",
+    "provider": "Botble\\Payment\\Providers\\PaymentServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "1.1.0",
+    "description": "Payment plugin"
+}

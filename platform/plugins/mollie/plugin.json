@@ -1,0 +1,11 @@
+{
+    "id": "botble/mollie",
+    "name": "Mollie Payment Gateway",
+    "namespace": "Botble\\Mollie\\",
+    "provider": "Botble\\Mollie\\Providers\\MollieServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "1.0.0",
+    "description": "Mollie payment gateway integration",
+    "require": ["botble/payment"]
+}

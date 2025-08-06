@@ -1,0 +1,10 @@
+{
+    "id": "botble/cookie-consent",
+    "name": "Cookie Consent",
+    "namespace": "Botble\\CookieConsent\\",
+    "provider": "Botble\\CookieConsent\\Providers\\CookieConsentServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "2.0.0",
+    "description": "Cookie Consent"
+}

@@ -1,0 +1,10 @@
+{
+    "id": "botble/captcha",
+    "name": "Captcha",
+    "namespace": "Botble\\Captcha\\",
+    "provider": "Botble\\Captcha\\Providers\\CaptchaServiceProvider",
+    "author": "Elite Design",
+    "url": "https://www.elitedesign.com.bd",
+    "version": "2.1.0",
+    "description": "Captcha for higher security"
+}
