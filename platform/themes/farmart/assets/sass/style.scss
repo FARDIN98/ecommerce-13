@@ -1587,4 +1587,34 @@ body.show-admin-bar {
     }
 }
 
+/* Custom Buy Now Button Styling */
+.buy-now-button {
+    background-color: #007bff !important;
+    color: white !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    transition: background-color 0.3s ease !important;
+    
+    &:hover {
+        background-color: #0056b3 !important;
+        color: white !important;
+        text-decoration: none !important;
+    }
+    
+    &.disabled {
+        background-color: #6c757d !important;
+        pointer-events: none !important;
+        opacity: 0.6 !important;
+    }
+    
+    .buy-now-text {
+        font-size: 14px !important;
+        font-weight: bold !important;
+    }
+}
+
 /* purgecss end ignore */

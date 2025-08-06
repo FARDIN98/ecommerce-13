@@ -20,21 +20,9 @@
         {!! apply_filters(ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML, null, $product) !!}
         <div class="product-button">
             @if (EcommerceHelper::isCartEnabled())
-                {!! Theme::partial('ecommerce.product-quantity', compact('product')) !!}
-                <button type="submit" name="add_to_cart" value="1" class="btn btn-primary mb-2 add-to-cart-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Add to cart') }}">
-                    <span class="svg-icon">
-                        <svg>
-                            <use href="#svg-icon-cart" xlink:href="#svg-icon-cart"></use>
-                        </svg>
-                    </span>
-                    <span class="add-to-cart-text ms-2">{{ __('Add to cart') }}</span>
-                </button>
-
-                @if (EcommerceHelper::isQuickBuyButtonEnabled() && isset($withBuyNow) && $withBuyNow)
-                    <button type="submit" name="checkout" value="1" class="btn btn-primary btn-black mb-2 add-to-cart-button @if ($product->isOutOfStock()) disabled @endif" @if ($product->isOutOfStock()) disabled @endif title="{{ __('Buy Now') }}">
-                        <span class="add-to-cart-text ms-2">{{ __('Buy Now') }}</span>
-                    </button>
-                @endif
+                <a href="{{ $product->url }}" class="btn buy-now-button @if ($product->isOutOfStock()) disabled @endif" title="{{ __('Buy Now') }}">
+                    <span class="buy-now-text">{{ __('Buy Now') }}</span>
+                </a>
             @endif
             @if (!empty($withButtons))
                 {!! Theme::partial('ecommerce.product-loop-buttons', compact('product', 'wishlistIds')) !!}
